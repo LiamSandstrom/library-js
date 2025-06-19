@@ -5,11 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <script src="javascript.js" defer></script>
-    <title>Odin-Library</title>
+    <title>The-Library</title>
   </head>
   <body>
+    <h1>The Library</h1>
+    <button class="add-btn">Add Book</button>
     <div class="wrapper">
       <div class="container"></div>
     </div>
+
+    <dialog class="add-dialog">
+      <form id="add-form" action="" method="get">
+        <div>
+          <label for="author">Author</label>
+          <input id="author" type="text" />
+        </div>
+        <div>
+          <label for="year">Year</label>
+          <input id="year" type="number" />
+        </div>
+        <div>
+          <label for="pages">Pages</label>
+          <input id="pages" type="number" />
+        </div>
+        <div>
+          <label for="stars">Stars</label>
+          <input id="stars" type="number" />
+        </div>
+        <button class="submit-btn">Submit</button>
+        <button class="close-btn" formmethod="dialog">X</button>
+      </form>
+    </dialog>
   </body>
 </html>

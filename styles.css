@@ -1,28 +1,150 @@
+*{
+    box-sizing: border-box;
+}
+
 body{
-    height: 100vh;
+    min-height: 100vh;
     background-color: black;
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    grid-template-rows: 100px 1fr;
+    justify-items: center;
+    align-items: center;
+
+    padding: 0 20px;
+    padding-bottom: 20px;
 }
 
 .wrapper{
     display: flex;
+    min-height: 100%;
     max-width: 1300px;
     width: 100%;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px;
+
+    grid-area: 2 / 1 / 3 / 3;
+    align-self: flex-start;
+
+    border: 5px solid rgba(2, 237, 250, 0.655);
+    border-radius: 10px;
 }
+
 
 .container{
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 10px;
-    padding: 30px;
 }
 
 .card{
     border: 1px solid white;
     height: 300px;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    padding-top: 40px;
+    gap: 20px;
+}
+
+.card h2{
+    margin: 0;
+}
+
+
+.title-container{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+h1{
+    color: white;
+    font-size: 2.5rem;
+}
+
+.add-btn{
+    height: 40px;
+    width: 120px;
+    border-radius: 10px;
+    border: none;
+    justify-self: flex-start;
+}
+
+.add-btn:hover{
+    background-color: black;
+    color: white;
+    outline: 3px solid white;
+    cursor: pointer;
+}
+
+
+/** Modal **/
+
+.add-dialog{
+    background-color: rgba(171, 174, 175, 0.589);
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+    border: 2px solid white;
+}
+
+.add-dialog form{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    gap: 20px;
+}
+
+.add-dialog div{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.add-dialog #author{
+    width: 200px;
+}
+
+
+.add-dialog input, .add-dialog #author{
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+}
+
+.add-dialog input{
+    width: 100px;
+}
+
+.add-dialog input:focus, .submit-btn:focus{
+    outline: 2px solid rgb(119, 185, 243);
+}
+
+.close-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 0;
+    border: none;
+    background-color: red;
+    border-radius: 2px;
+}
+
+.close-btn:hover, .submit-btn:hover{
+    cursor: pointer;
+    outline: 2px solid rgb(192, 190, 190);
+}
+
+.submit-btn{
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
 }

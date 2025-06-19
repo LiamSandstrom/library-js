@@ -32,7 +32,6 @@ function addBookToLibrary(author, year, pages, stars, read) {
 addBookToLibrary("bob", 2022, 222, 8, true);
 addBookToLibrary("leroy", 2010, 37, 7, false);
 addBookToLibrary("can win", 2025, 777, 10, true);
-console.log(myLibrary);
 displayBooks();
 
 function displayBooks() {
@@ -102,10 +101,7 @@ addBtn.addEventListener("click", () => {
   addDialog.showModal();
 });
 
-let submited = false;
-
 addForm.addEventListener("submit", (e) => {
-  if (submited == true) {
     event.preventDefault();
     const form = e.target;
     const newBook = addBookToLibrary(
@@ -118,13 +114,6 @@ addForm.addEventListener("submit", (e) => {
     displayBook(newBook);
     addForm.reset();
     addDialog.close();
-  }
-  submited = false;
-  console.log("submited");
-});
-
-submitButton.addEventListener("click", () => {
-  submited = true;
 });
 
 closeBtn.addEventListener("click", () => {

@@ -54,11 +54,11 @@ body{
     gap: 15px;
     position: relative;
     will-change: border;
-    transition: 0.1s border;
+    transition: 0.2s outline;
 }
 
 .card:hover{
-    border: 6px solid white;
+    outline: 6px solid white;
 }
 
 .card h2{

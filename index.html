@@ -18,7 +18,7 @@
       <form id="add-form" action="" method="get">
         <div>
           <label for="author">Author</label>
-          <input id="author" type="text" />
+          <input id="author" type="text" required/>
         </div>
         <div>
           <label for="year">Year</label>
@@ -31,6 +31,10 @@
         <div>
           <label for="stars">Stars</label>
           <input id="stars" type="number" />
+        </div>
+        <div class="read-box">
+          <label for="read">Read</label>
+          <input id="read" type="checkbox" />
         </div>
         <button class="submit-btn">Submit</button>
         <button class="close-btn" formmethod="dialog">X</button>

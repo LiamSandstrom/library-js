@@ -3,10 +3,11 @@ const addBtn = document.querySelector(".add-btn");
 const addDialog = document.querySelector(".add-dialog");
 const addForm = document.querySelector("#add-form");
 const submitButton = document.querySelector(".submit-btn");
+const closeBtn = document.querySelector(".close-btn");
 
 const myLibrary = new Map();
 
-function Book(author, year, pages, stars) {
+function Book(author, year, pages, stars, read) {
   if (!new.target) {
     throw Error("Book needs to be called with 'new' keyword");
   }
@@ -14,30 +15,37 @@ function Book(author, year, pages, stars) {
   this.year = year;
   this.pages = pages;
   this.stars = stars;
+  this.read = read;
 }
 
-function addBookToLibrary(author, year, pages, stars) {
+Book.prototype.readswap = function(){
+    this.read = !this.read;
+}
+
+function addBookToLibrary(author, year, pages, stars, read) {
   const id = crypto.randomUUID();
-  const newBook = new Book(author, year, pages, stars);
+  const newBook = new Book(author, year, pages, stars, read);
   myLibrary.set(id, newBook);
   return id;
 }
 
-addBookToLibrary("bob", 2022, 222, 8);
-addBookToLibrary("leroy", 2010, 37, 7);
-addBookToLibrary("can win", 2025, 777, 10);
+addBookToLibrary("bob", 2022, 222, 8, true);
+addBookToLibrary("leroy", 2010, 37, 7, false);
+addBookToLibrary("can win", 2025, 777, 10, true);
 console.log(myLibrary);
 displayBooks();
 
 function displayBooks() {
   for (const [key, book] of myLibrary) {
     console.log();
-    displayBook(book);
+    displayBook(key);
   }
 }
 
-function displayBook(book) {
+function displayBook(key) {
   const newBook = document.createElement("div");
+  const book = myLibrary.get(key);
+  newBook.classList = "card";
 
   if (book.author != "") {
     const author = document.createElement("h2");
@@ -63,7 +71,29 @@ function displayBook(book) {
     newBook.appendChild(stars);
   }
 
-  newBook.classList = "card";
+  const read = document.createElement("h2");
+  read.textContent = "Read: " + book.read;
+  newBook.appendChild(read);
+
+  const readBtn = document.createElement("button");
+  readBtn.textContent = "ReadSwapper"
+  readBtn.classList = "read-btn";
+  readBtn.addEventListener("click", () => {
+    book.readswap();
+    read.textContent = "Read: " + book.read;
+    console.log(book)
+  });
+  newBook.appendChild(readBtn);
+
+  const delBtn = document.createElement("button");
+  delBtn.textContent = "X"
+  delBtn.classList = "close-btn"
+  delBtn.addEventListener("click", () => {
+    myLibrary.delete(key);
+    container.removeChild(newBook);
+  });
+  newBook.appendChild(delBtn);
+
   container.appendChild(newBook);
 }
 
@@ -82,10 +112,12 @@ addForm.addEventListener("submit", (e) => {
       form.author.value,
       form.year.value,
       form.pages.value,
-      form.stars.value
+      form.stars.value,
+      form.read.checked,
     );
-    displayBook(myLibrary.get(newBook));
+    displayBook(newBook);
     addForm.reset();
+    addDialog.close();
   }
   submited = false;
   console.log("submited");
@@ -94,3 +126,8 @@ addForm.addEventListener("submit", (e) => {
 submitButton.addEventListener("click", () => {
   submited = true;
 });
+
+closeBtn.addEventListener("click", () => {
+    addDialog.close();
+});
+

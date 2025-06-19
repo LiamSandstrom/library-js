@@ -1,4 +1,6 @@
 
+const container = document.querySelector(".container");
+
 const myLibrary = [];
 
 function Book(author, year, pages, stars){
@@ -23,9 +25,12 @@ addBookToLibrary("bob", 2022, 222, 8);
 addBookToLibrary("leroy", 2010, 37, 7);
 addBookToLibrary("can win", 2025, 777, 10);
 console.log(myLibrary)
+displayBooks();
 
 function displayBooks(){
     for(book in myLibrary){
-        
+        const newBook = document.createElement("div");
+        newBook.classList = "card";
+        container.appendChild(newBook);
     }
 }
